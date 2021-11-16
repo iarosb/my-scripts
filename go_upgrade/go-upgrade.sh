@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# elevated permissions are required to run this script
+
 makeUpdate() {
   echo "Removing old versions from: /usr/local/bin && $HOME/go/bin "
   rm -rf /usr/local/go

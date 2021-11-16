@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# elevated permissions are required to run this script
+
 fnm_install() {
 
   echo "## Downloading and installing fnm.."
@@ -27,12 +29,12 @@ fnm_install() {
 apt_install() {
 
   echo "## Purging existing installation of Node.js"
-  sudo apt autoremove -y --purge nodejs
+  apt autoremove -y --purge nodejs
 
   echo "## Removing chris-lea ppa repos if exist"
-  sudo add-apt-repository -y -r ppa:chris-lea/node.js
-  sudo rm -f /etc/apt/sources.list.d/chris-lea-node_js-*.list
-  sudo rm -f /etc/apt/sources.list.d/chris-lea-node_js-*.list.save
+  add-apt-repository -y -r ppa:chris-lea/node.js
+  rm -f /etc/apt/sources.list.d/chris-lea-node_js-*.list
+  rm -f /etc/apt/sources.list.d/chris-lea-node_js-*.list.save
   echo "--done--"
 
   echo "## Downloading & executing pre-installation script"
@@ -44,8 +46,8 @@ apt_install() {
   echo "--done--"
 
   echo "## Installing Node.js using apt .."
-  sudo apt-get update
-  sudo apt-get install -y nodejs
+  apt-get update
+  apt-get install -y nodejs
   echo "--done--"
 
   echo "## Setting up \$PATH for nodejs.."
