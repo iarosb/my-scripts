@@ -8,7 +8,7 @@ declare -a apts=(
 )
 
 for i in "${apts[@]}"
-do 
+do
   echo "$i"
   #apt install -y "$i"
 done
