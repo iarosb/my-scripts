@@ -2,6 +2,8 @@
 
 # elevated permissions are required to run this script
 
+HOME="$(getent passwd $SUDO_USER | cut -d: -f6)"
+
 fnm_install() {
 
   echo "## Downloading and installing fnm.."
@@ -18,6 +20,9 @@ fnm_install() {
   fnm default $version
   fnm install default
   echo "--done--"
+
+  source $HOME/.profile
+  source $HOME/.bashrc
 
   echo "## Finished"
   echo "-----------------"
@@ -50,13 +55,17 @@ apt_install() {
   apt-get install -y nodejs
   echo "--done--"
 
-  echo "## Setting up \$PATH for nodejs.."
-  echo "# Nodejs installed with apt (script)" >> ~/.profile
-  echo export PATH="$PATH:/usr/bin/node" >> ~/.profile
+  #echo "## Setting up \$PATH for nodejs.."
+  #echo "# Nodejs installed with apt (script)" >> ~/.profile
+  #echo export PATH="$PATH:/usr/bin/node" >> ~/.profile
   echo "## Finished"
   echo "-----------------"
-  which nodejs
-  nodejs -v
+
+  source $HOME/.profile
+  source $HOME/.bashrc
+
+  which node
+  node --version
 }
 
 confirm () {
